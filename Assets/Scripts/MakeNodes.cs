@@ -7,10 +7,14 @@ public class MakeNodes : MonoBehaviour {
 	public Transform nodeSpawn;
 
 	void Update () {
-		if (Input.GetButton("Fire1")) {
-			print(Input.mousePosition);
-            Instantiate(node, nodeSpawn.position, nodeSpawn.rotation);
-        }
+		if (Input.GetKeyDown("space")) {
+			Vector3 newNodePosition = new Vector3 (nodeSpawn.position.x, Random.Range (0.5f, 1.6f), nodeSpawn.position.z);
+			Collider[] nearbyNodes = Physics.OverlapSphere(newNodePosition, 0.2f);
+			Debug.Log (nearbyNodes.Length);
 
+			if (nearbyNodes.Length == 0) {
+				Instantiate(node, newNodePosition, nodeSpawn.rotation);
+			}
+        }
 	}
 }
