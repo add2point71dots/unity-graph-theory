@@ -6,6 +6,7 @@ public class RayCastForward : MonoBehaviour {
 	private bool firstClicked;
 	private Vector3 lineStart;
 	private Vector3 lineEnd;
+	public GameObject edge;
 
 	void Start () {
 		firstClicked = true;
@@ -16,11 +17,13 @@ public class RayCastForward : MonoBehaviour {
 			RaycastHit hit; 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
 			if ( Physics.Raycast (ray , out hit, 100.0f)) {
-				// still need to fiddle with this --> probs with a lastclicked/currentclicked
+				Debug.Log("First click? " + firstClicked);
+				// still a WIP
 				if (firstClicked) {
 					lineStart = hit.transform.position;
 				} else {
 					lineEnd = hit.transform.position;
+					DrawEdge(lineStart, lineEnd);
 				}
 
 				firstClicked = !firstClicked;
@@ -28,5 +31,20 @@ public class RayCastForward : MonoBehaviour {
 				Debug.Log ("Line end is: " + lineEnd);
 			}
 		}  
+    }
+
+    void DrawEdge (Vector3 start, Vector3 end) {
+    	Debug.Log("IN DRAWEDGE");
+    	Debug.Log ("LINE GOES: " + start + " " + end);
+
+		var points = new Vector3[2];
+		points[0] = start;
+		points[1] = end;
+
+		Instantiate(edge);
+
+		LineRenderer line = edge.GetComponent<LineRenderer>();
+		line.SetPositions(points);
+
     }
 }
