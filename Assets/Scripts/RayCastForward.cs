@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RayCastForward : MonoBehaviour {
 	private bool firstClicked;
-	private Vector3 lineStart;
-	private Vector3 lineEnd;
+	private Transform lineStart;
+	private Transform lineEnd;
 	public GameObject edge;
 
 	void Start () {
@@ -16,14 +16,25 @@ public class RayCastForward : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) { 
 			RaycastHit hit; 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
-			if ( Physics.Raycast (ray , out hit, 100.0f)) {
+			if (Physics.Raycast (ray , out hit, 100.0f)) {
 				Debug.Log("First click? " + firstClicked);
+				Debug.Log("hit is: " + hit.transform);
 				// still a WIP
 				if (firstClicked) {
-					lineStart = hit.transform.position;
+//					lineStart = hit.transform.position;
+					lineStart = hit.transform;
 				} else {
-					lineEnd = hit.transform.position;
-					DrawEdge(lineStart, lineEnd);
+//					lineEnd = hit.transform.position;
+					lineEnd = hit.transform;
+//					DrawEdge(lineStart, lineEnd);
+
+					GameObject go = Instantiate(edge) as GameObject;
+					DrawEdge drawEdge = go.GetComponent<DrawEdge>();
+					drawEdge.start = lineStart;
+					drawEdge.end = lineEnd;
+		
+
+					
 				}
 
 				firstClicked = !firstClicked;
@@ -33,18 +44,18 @@ public class RayCastForward : MonoBehaviour {
 		}  
     }
 
-    void DrawEdge (Vector3 start, Vector3 end) {
-    	Debug.Log("IN DRAWEDGE");
-    	Debug.Log ("LINE GOES: " + start + " " + end);
-
-		var points = new Vector3[2];
-		points[0] = start;
-		points[1] = end;
-
-		Instantiate(edge);
-
-		LineRenderer line = edge.GetComponent<LineRenderer>();
-		line.SetPositions(points);
-
-    }
+//    void DrawEdge (Vector3 start, Vector3 end) {
+//    	Debug.Log("IN DRAWEDGE");
+//    	Debug.Log ("LINE GOES: " + start + " " + end);
+//
+//		var points = new Vector3[2];
+//		points[0] = start;
+//		points[1] = end;
+//
+//		Instantiate(edge);
+//
+//		LineRenderer line = edge.GetComponent<LineRenderer>();
+//		line.SetPositions(points);
+//
+//    }
 }
