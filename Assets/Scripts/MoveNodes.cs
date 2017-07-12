@@ -52,9 +52,11 @@ public class MoveNodes : MonoBehaviour {
 			Debug.Log ("Tryna GRAB");
 			if (grabbedObject == null) {
 				TryGrabObject (GetMouseHoverObject ());
-			} else {
-				DropObject ();
 			}
+		}
+
+		if (Input.GetMouseButtonUp (0)) {
+			DropObject ();
 		}
 
 		if (grabbedObject != null) 
