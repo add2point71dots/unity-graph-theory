@@ -29,25 +29,24 @@ public class DrawEdge : MonoBehaviour {
 		line.SetPosition(0, start.position);
 		line.SetPosition(1, end.position);
 
-//		collider.transform.position = (start.position + end.position) / 2;
+		collider.transform.position = (start.position + end.position) / 2;
 		collider.height = (end.position - start.position).magnitude;
 		collider.transform.LookAt(start.position);
-// 		capsule.transform.LookAt(start.position);
 //		capsule.height = (end.position - start.position).magnitude;
 
 
 //		collider.transform.position = (start.position + end.position) / 2; // Collider is added as child object of line
-        float lineLength = Vector3.Distance (start.position, end.position); // length of line
+//        float lineLength = Vector3.Distance (start.position, end.position); // length of line
 //        collider.size = new Vector3 (lineLength, 0.1f, 1f); // size of collider is set where X is length of line, Y is width of line, Z will be set as per requirement
-        Vector3 midPoint = (start.position + end.position)/2;
-        collider.transform.position = midPoint; // setting position of collider object
+//        Vector3 midPoint = (start.position + end.position)/2;
+//        collider.transform.position = midPoint; // setting position of collider object
         // Following lines calculate the angle between startPos and endPos
-        float angle = (Mathf.Abs (start.position.y - end.position.y) / Mathf.Abs (start.position.x - end.position.x));
-        if((start.position.y<end.position.y && start.position.x>end.position.x) || (end.position.y<start.position.y && end.position.x>start.position.x))
-        {
-            angle*=-1;
-        }
-        angle = Mathf.Rad2Deg * Mathf.Atan (angle);
+//        float angle = (Mathf.Abs (start.position.y - end.position.y) / Mathf.Abs (start.position.x - end.position.x));
+//        if((start.position.y<end.position.y && start.position.x>end.position.x) || (end.position.y<start.position.y && end.position.x>start.position.x))
+//        {
+//            angle*=-1;
+//        }
+//        angle = Mathf.Rad2Deg * Mathf.Atan (angle);
 //        collider.transform.Rotate (0, 0, angle);
 	}
 }
