@@ -33,6 +33,8 @@ public class ColorChanger : MonoBehaviour {
 				material.SetColor("_Color", Color.yellow);
 			} else if (Input.GetKeyDown ("c")) {
 				material.SetColor("_Color", Color.cyan);
+			} else if (Input.GetKeyDown ("d")) {
+				material.SetColor("_Color", defaultColor);
 			}
 		}
 	}
