@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RayCastForward : MonoBehaviour {
+	// bunch of stuff in here I don't need but since this isn't a real project, I might not clean it up.
 	private bool firstClicked;
 	private GameObject lineStart;
 	private GameObject lineEnd;
