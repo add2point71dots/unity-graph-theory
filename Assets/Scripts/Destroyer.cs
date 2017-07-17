@@ -15,6 +15,14 @@ public class Destroyer : MonoBehaviour {
 			RaycastHit hit; 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
 			if (Physics.Raycast (ray , out hit, 100.0f)) {
+				GameObject hitObject = hit.transform.gameObject;
+				if (hitObject.tag == "Node") {
+					Debug.Log("I'm DESTROYING A NODE");
+					NodeController nodeController = hitObject.GetComponent<NodeController>();
+					for (int i = 0; i < nodeController.connectedEdges.Count; i++) {
+						Destroy(nodeController.connectedEdges[i]);
+					}
+				}
 				Destroy(hit.transform.gameObject);
 				Debug.Log("I've HIT SOMETHING");
 			}
