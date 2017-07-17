@@ -27,12 +27,12 @@ public class RayCastForward : MonoBehaviour {
 				if (firstClicked) {
 //					lineStart = hit.transform.position;
 					lineStart = hit.transform;
-					GameObject startNode = hit.transform.gameObject;
+					startNode = hit.transform.gameObject;
 					startNodeController = hit.transform.gameObject.GetComponent<NodeController>();
 				} else {
 //					lineEnd = hit.transform.position;
 					lineEnd = hit.transform;
-					GameObject endNode = hit.transform.gameObject;
+					endNode = hit.transform.gameObject;
 					endNodeController = hit.transform.gameObject.GetComponent<NodeController>();
 //					DrawEdge(lineStart, lineEnd);
 
