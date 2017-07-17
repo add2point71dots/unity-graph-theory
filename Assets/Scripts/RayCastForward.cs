@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RayCastForward : MonoBehaviour {
 	private bool firstClicked;
-	private Transform lineStart;
-	private Transform lineEnd;
+	private GameObject lineStart;
+	private GameObject lineEnd;
 	public GameObject edge;
 	private GameObject startNode;
 	private GameObject endNode;
@@ -26,12 +26,12 @@ public class RayCastForward : MonoBehaviour {
 				// still a WIP
 				if (firstClicked) {
 //					lineStart = hit.transform.position;
-					lineStart = hit.transform;
+					lineStart = hit.transform.gameObject;
 					startNode = hit.transform.gameObject;
 					startNodeController = hit.transform.gameObject.GetComponent<NodeController>();
 				} else {
 //					lineEnd = hit.transform.position;
-					lineEnd = hit.transform;
+					lineEnd = hit.transform.gameObject;
 					endNode = hit.transform.gameObject;
 					endNodeController = hit.transform.gameObject.GetComponent<NodeController>();
 //					DrawEdge(lineStart, lineEnd);
