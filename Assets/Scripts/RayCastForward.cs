@@ -7,6 +7,10 @@ public class RayCastForward : MonoBehaviour {
 	private Transform lineStart;
 	private Transform lineEnd;
 	public GameObject edge;
+	private GameObject startNode;
+	private GameObject endNode;
+	private NodeController startNodeController;
+	private NodeController endNodeController;
 
 	void Start () {
 		firstClicked = true;
@@ -23,12 +27,22 @@ public class RayCastForward : MonoBehaviour {
 				if (firstClicked) {
 //					lineStart = hit.transform.position;
 					lineStart = hit.transform;
+					GameObject startNode = hit.transform.gameObject;
+					startNodeController = hit.transform.gameObject.GetComponent<NodeController>();
 				} else {
 //					lineEnd = hit.transform.position;
 					lineEnd = hit.transform;
+					GameObject endNode = hit.transform.gameObject;
+					endNodeController = hit.transform.gameObject.GetComponent<NodeController>();
 //					DrawEdge(lineStart, lineEnd);
 
 					GameObject go = Instantiate(edge) as GameObject;
+					startNodeController.connectedEdges.Add(go);
+					endNodeController.connectedEdges.Add(go);
+
+					startNodeController.adjacentNodes.Add(endNode);
+					endNodeController.adjacentNodes.Add(startNode);
+				
 					DrawEdge drawEdge = go.GetComponent<DrawEdge>();
 					drawEdge.start = lineStart;
 					drawEdge.end = lineEnd;
